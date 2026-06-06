@@ -10,6 +10,7 @@ import pandas as pd
 from src.preprocessing import preprocess_customer
 from src.feature_engineering import create_features
 from src.recommendation_engine import generate_risk_report
+from src.explainability import generate_feature_explanations
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -49,5 +50,10 @@ def predict_customer(customer_data: dict) -> dict:
         customer_features,
         probability
     )
+    result["feature_explanations"] = (
+    generate_feature_explanations(
+        customer_features
+    )
+)
 
     return result

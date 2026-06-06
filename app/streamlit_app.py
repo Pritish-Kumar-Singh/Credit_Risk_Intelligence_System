@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+import json
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -268,27 +269,82 @@ if st.button(
                 "Prediction generated successfully"
             )
 
-            st.subheader("Risk Assessment")
+            st.header("Risk Assessment")
 
-            st.metric(
-                "Risk Level",
-                result["risk_level"]
-            )
+            risk_level = result["risk_level"]
+
+            probability = result[
+                "default_probability"
+            ]
+
+            if risk_level == "HIGH":
+
+                st.error(
+                    f"Risk Level: {risk_level}"
+                )
+
+            elif risk_level == "MEDIUM":
+
+                st.warning(
+                    f"Risk Level: {risk_level}"
+                )
+
+            else:
+
+                st.success(
+                    f"Risk Level: {risk_level}"
+                )
 
             st.metric(
                 "Default Probability",
-                f"{result['default_probability']:.2%}"
+                f"{probability * 100:.2f}%"
             )
 
-            st.subheader("Risk Drivers")
+            st.progress(
+                float(probability)
+            )
 
-            for driver in result["risk_drivers"]:
+            st.subheader(
+                "Risk Drivers"
+            )
+
+            for driver in result[
+                "risk_drivers"
+            ]:
+
                 st.warning(driver)
 
-            st.subheader("Recommendations")
+            st.subheader(
+                "Recommendations"
+            )
 
-            for rec in result["recommendations"]:
+            for rec in result[
+                "recommendations"
+            ]:
+
                 st.info(rec)
+
+            if "feature_explanations" in result:
+
+                st.subheader(
+                    "Why did the model make this prediction?"
+                )
+
+                for item in result[
+                    "feature_explanations"
+                ]:
+
+                    st.success(item)
+
+            st.download_button(
+                label="Download Risk Report",
+                data=json.dumps(
+                    result,
+                    indent=4
+                ),
+                file_name="credit_risk_report.json",
+                mime="application/json"
+            )
 
         else:
 
