@@ -1,0 +1,8 @@
+{
+    "model_name": "XGBoost",
+    "roc_auc": 0.7809,
+    "threshold": 0.55,
+    "num_features": 36,
+    "train_rows": 24000,
+    "test_rows": 6000
+}
