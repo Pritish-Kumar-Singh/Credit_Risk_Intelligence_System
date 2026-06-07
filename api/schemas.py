@@ -41,3 +41,4 @@ class PredictionResponse(BaseModel):
     risk_drivers: list[str]
 
     recommendations: list[str]
+    feature_explanations: list[str]

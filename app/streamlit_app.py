@@ -1,7 +1,11 @@
 from pathlib import Path
 import sys
 import json
-
+import os
+API_URL = os.getenv(
+    "API_URL",
+    "http://127.0.0.1:8000/predict"
+)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if str(BASE_DIR) not in sys.path:
@@ -256,7 +260,7 @@ if st.button(
     try:
 
         response = requests.post(
-            "http://127.0.0.1:8000/predict",
+            API_URL,
             json=customer_data,
             timeout=30
         )
@@ -264,6 +268,7 @@ if st.button(
         if response.status_code == 200:
 
             result = response.json()
+            
 
             st.success(
                 "Prediction generated successfully"

@@ -1,0 +1,34 @@
+services:
+
+  api:
+
+    build: .
+    container_name: credit_risk_api
+
+    command: >
+      uvicorn api.main:app
+      --host 0.0.0.0
+      --port 8000
+
+    ports:
+      - "8000:8000"
+
+  streamlit:
+
+    build: .
+
+    container_name: credit_risk_streamlit
+
+    command: >
+      streamlit run app/streamlit_app.py
+      --server.address=0.0.0.0
+      --server.port=8501
+
+    environment:
+      API_URL: http://api:8000/predict
+
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      - api
