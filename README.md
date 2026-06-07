@@ -31,7 +31,70 @@ Manual assessment is slow and inconsistent.
 This system automates risk assessment using historical customer behavior and repayment patterns.
 
 ---
+## Business Intelligence & SQL Analysis
 
+Before building the machine learning model, extensive business analysis was performed using SQL to understand customer behavior, identify default patterns, and generate business insights.
+
+The goal was to answer real-world business questions before moving to predictive modeling.
+
+### SQL Analysis Objectives
+
+The analysis focused on:
+
+* Customer default behavior
+* Payment delay patterns
+* Credit utilization trends
+* Repayment effectiveness
+* Customer segmentation
+* Risk concentration
+
+### Key Business Questions Answered
+
+#### 1. Which customer groups have the highest default rates?
+
+#### 2. How do payment delays impact default risk?
+
+#### 3. Does credit utilization influence risk?
+
+#### 4. Are customers making sufficient repayments?
+
+#### 5. Which customer segments are most risky?
+
+### Key Findings
+
+#### Payment History is the Strongest Risk Indicator
+
+Customers with repeated repayment delays showed significantly higher default rates.
+
+#### High Credit Utilization Increases Risk
+
+Customers using a large percentage of their available credit were more likely to default.
+
+#### Low Repayment Ratios Signal Financial Stress
+
+Customers paying only a small portion of their monthly obligations demonstrated elevated risk levels.
+
+#### Risk is Concentrated in Specific Customer Segments
+
+Certain combinations of repayment behavior and credit utilization consistently produced higher default probabilities.
+
+### Business Impact
+
+The SQL analysis helped:
+
+* Understand customer behavior before modeling
+* Validate business assumptions
+* Identify important risk factors
+* Guide feature engineering decisions
+* Improve model interpretability
+
+### SQL Deliverables
+
+The complete SQL analysis is documented in:
+
+reports/sql_analysis.md
+
+---
 ## Architecture
 
 Streamlit UI
@@ -107,33 +170,34 @@ Risk Assessment & Recommendations
 
 ---
 
-## Features
+## Project Highlights
 
-### Risk Prediction
+### Business Intelligence Layer
 
-Predicts probability of customer default.
+- SQL-driven risk analysis
+- Customer segmentation
+- Repayment behavior analysis
+- Credit utilization analysis
+- Business insight generation
 
-### Risk Classification
+### Machine Learning Layer
 
-* LOW
-* MEDIUM
-* HIGH
+- XGBoost Risk Prediction
+- Probability Scoring
+- Risk Classification
 
 ### Explainability Layer
 
-Displays business-friendly explanations for predictions.
+- Risk Drivers
+- Feature Explanations
+- Recommendation Engine
 
-### Recommendation Engine
+### Deployment Layer
 
-Generates actionable credit risk recommendations.
-
-### Downloadable Reports
-
-Export prediction results as JSON.
-
-### API Documentation
-
-Swagger UI available through FastAPI.
+- FastAPI Backend
+- Streamlit Frontend
+- Dockerized Architecture
+- Docker Hub Distribution
 
 ---
 
@@ -150,15 +214,17 @@ Credit_Risk_Intelligence_System/
 │   └── raw/
 ├── notebooks/
 │   ├── 01_data_preprocessing.ipynb
-    └── 02_feature_engineering.ipynb
-    └── 03_model_training.ipynb
+│   └── 02_feature_engineering.ipynb
+│   └── 03_model_training.ipynb
 │   └── 04_recommendation_engine.ipynb
 ├── src/
 ├── models/
+├── sql/
 │
 ├── reports/
 │   ├── preprocessing_report.md
 │   └── modeling_report.md
+│   └── sql_analysis.md
 │
 ├── requirements.txt
 ├── requirements_prod.txt
