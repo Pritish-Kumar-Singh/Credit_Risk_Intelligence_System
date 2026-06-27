@@ -164,9 +164,8 @@ Risk Assessment & Recommendations
 | Metric    | Value   |
 | --------- | ------- |
 | Model     | XGBoost |
-| ROC-AUC   | 0.7809  |
-| Threshold | 0.55    |
-| Features  | 36      |
+| ROC-AUC   | 0.7810  |
+| Recall    | 0.74    |
 
 ---
 
