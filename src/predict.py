@@ -34,7 +34,7 @@ feature_columns = joblib.load(FEATURE_PATH)
 
 def predict_customer(customer_data: dict) -> dict:
 
-    df = preprocess_customer(customer_data)
+    df = pd.DataFrame([customer_data])
 
     df = create_features(df)
 
